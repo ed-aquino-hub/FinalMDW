@@ -1,11 +1,17 @@
+// src/App.js
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 
-import Home from './components/Home';
-import CheckoutForm from './components/CheckoutForm';
-import SesionChecker from './components/SesionChecker';
-import { CartProvider } from './context/CartContext';
 import { UserProvider } from './context/UserContext';
+import { CartProvider } from './context/CartContext';
+
+import Navbar from './components/Navbar';
+import Footer from './components/Footer'; 
+import SesionChecker from './protected/SesionChecker';
+
+import AppRoutes from './routes/routes';
+
+
 
 function App() {
   return (
@@ -13,10 +19,9 @@ function App() {
       <UserProvider>
         <CartProvider>
           <SesionChecker />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/checkout" element={<CheckoutForm />} />
-          </Routes>
+          <Navbar />
+          <AppRoutes />
+           <Footer /> 
         </CartProvider>
       </UserProvider>
     </Router>

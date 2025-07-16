@@ -1,5 +1,6 @@
 import React from 'react';
-import './Home.css';
+import '../pages/Home/Home.css';
+
 
 const CompraExitosaModal = ({ visible, onClose, datos }) => {
   if (!visible || !datos) return null;

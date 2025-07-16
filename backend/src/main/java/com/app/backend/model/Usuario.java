@@ -1,38 +1,39 @@
 package com.app.backend.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "usuarios")
+@Table(name = "usuarios_login")
+@Getter
+@Setter
 public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nombre;
-
-    @Column(unique = true)
     private String email;
-
     private String password;
 
-    @Column(name = "fecha_registro", insertable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private String fechaRegistro;
+    @Column(name = "fecha_registro")
+    private LocalDateTime fechaRegistro;
 
-    // Getters y Setters
+    private String rol;  // NUEVO campo agregado
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    // Puedes agregar un constructor si deseas
+    public Usuario() {
+        this.fechaRegistro = LocalDateTime.now(); // inicializa al registrar
+    }
 
-    public String getNombre() { return nombre; }
-    public void setNombre(String nombre) { this.nombre = nombre; }
-
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
-
-    public String getPassword() { return password; }
-    public void setPassword(String password) { this.password = password; }
-
-    public String getFechaRegistro() { return fechaRegistro; }
+    // Opcional: Constructor con parámetros
+    public Usuario(String email, String password, String rol) {
+        this.email = email;
+        this.password = password;
+        this.rol = rol;
+        this.fechaRegistro = LocalDateTime.now();
+    }
 }
