@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { UserContext } from '../../context/UserContext';
-import { CartContext } from '../../context/CartContext';
+import { useUser } from '../../context/UserContext';
+import { useCart } from '../../context/CartContext';
 
 
 const CheckoutForm = ({ onNext, onBack }) => {
   const { user } = useUser();
+  const { cart, clearCart } = useCart();
+
   const [entrega, setEntrega] = useState('delivery');
   const [direccion, setDireccion] = useState('');
   const [pago, setPago] = useState('efectivo');
   const [mostrarModal, setMostrarModal] = useState(false);
-  const { cart, clearCart } = useCart();
+  
 
   useEffect(() => {
     if (user?.direccion) {
@@ -72,7 +74,7 @@ const CheckoutForm = ({ onNext, onBack }) => {
 
   return (
     <div className="modal-checkout">
-      <h2>📦 Detalles de Entrega y Pago</h2>
+      <h2>Detalles de Entrega y Pago</h2>
       <form onSubmit={handleSubmit}>
         <label>Método de Entrega:</label><br />
         <select value={entrega} onChange={(e) => setEntrega(e.target.value)}>
