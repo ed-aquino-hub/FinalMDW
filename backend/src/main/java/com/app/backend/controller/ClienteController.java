@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import jakarta.servlet.http.HttpSession;
 import java.util.Optional;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/clientes")
@@ -20,6 +21,13 @@ public class ClienteController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @GetMapping
+    public List<Cliente> obtenerTodosClientes() {
+        System.out.println("Solicitud recibida para listar clientes"); 
+        return clienteRepository.findAll();
+    }
+
+   
     @PostMapping("/registrar")
     public ResponseEntity<?> registrar(@RequestBody Cliente cliente) {
         Optional<Cliente> existente = clienteRepository.findByEmail(cliente.getEmail());

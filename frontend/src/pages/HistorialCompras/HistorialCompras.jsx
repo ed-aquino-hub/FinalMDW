@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { UserContext } from '../../context/UserContext';
+import { useUser } from '../../context/UserContext';
 
 
 const HistorialCompras = () => {
